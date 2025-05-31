@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: ts-formula-1-bets
+  main:
+    banner-mode: 'off'
+  profiles:
+      active: dev
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 5000
+            read-timeout: 5000
+            logger-level: FULL
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/formula
+    username: formulaUser
+    password: pwd123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    schemas: bets
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    info:
+      build:
+        enabled: true
+      env:
+        enabled: true
+
+api:
+  openf1:
+    url: https://api.openf1.org/v1/

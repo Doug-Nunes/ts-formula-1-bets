@@ -1,0 +1,11 @@
+package com.formula.bet.respository;
+
+import com.formula.bet.model.EventSession;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EventSessionRepository extends JpaRepository<EventSession, Long> {
+
+    EventSession findBySessionKey(Integer sessionKey);
+}
